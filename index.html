@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autoevaluación - Mi Punto de Partida - FRH UTN</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        :root { --utn-blue: #00376d; }
+        body { font-family: 'Inter', sans-serif; background-color: #f0f2f5; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        .canvas-card { transition: all 0.3s ease; border-top: 4px solid transparent; }
+        .badge-card { cursor: pointer; transition: all 0.2s; border: 2px dashed rgba(255,255,255,0.2); }
+        .badge-card.selected { background-color: white !important; color: var(--utn-blue) !important; border-color: var(--utn-blue); border-style: solid; transform: scale(1.05); }
+        .header-gradient { background: linear-gradient(135deg, #00376d 0%, #002142 100%); }
+        .data-input { background: transparent; border-bottom: 1px solid #cbd5e1; font-size: 12px; padding: 2px; outline: none; width: 100%; transition: border-color 0.3s; }
+        .data-input:focus { border-color: #3b82f6; }
+
+        @media print {
+            @page { size: A4; margin: 10mm; }
+            .no-print, #saveModal, footer button, header button { display: none !important; }
+            body { background: white !important; padding: 0 !important; }
+            .max-w-6xl { max-width: 100% !important; width: 100% !important; border: none !important; box-shadow: none !important; margin: 0 !important; }
+            .canvas-container { display: grid !important; grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
+            .canvas-card { height: 220px !important; break-inside: avoid; border: 1px solid #ddd !important; }
+            .bg-blue-50 { background-color: #eff6ff !important; border-top: 4px solid #3b82f6 !important; }
+            .bg-purple-50 { background-color: #f5f3ff !important; border-top: 4px solid #8b5cf6 !important; }
+            .bg-emerald-50 { background-color: #ecfdf5 !important; border-top: 4px solid #10b981 !important; }
+            .bg-orange-50 { background-color: #fff7ed !important; border-top: 4px solid #f97316 !important; }
+            .bg-rose-50 { background-color: #fff1f2 !important; border-top: 4px solid #f43f5e !important; }
+            .bg-cyan-50 { background-color: #ecfeff !important; border-top: 4px solid #06b6d4 !important; }
+            .badge-section { background-color: #0f172a !important; -webkit-print-color-adjust: exact; }
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="max-w-6xl mx-auto bg-white rounded-xl shadow-2xl overflow-hidden border border-gray-200">
+        <header class="header-gradient text-white p-6 md:p-8 relative">
+            <div class="absolute top-0 right-0 p-4 opacity-10"><i class="fas fa-university text-8xl"></i></div>
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 relative z-10">
+                <div>
+                    <h1 class="text-2xl md:text-3xl font-bold flex items-center gap-3">
+                        <i class="fas fa-route text-blue-300"></i> Mi Punto de Partida
+                    </h1>
+                    <p class="text-blue-200 mt-1 uppercase tracking-widest text-xs font-semibold">
+                        Autoevaluación e Identidad Estudiantil | Ingeniería y Sociedad - FRH-UTN
+                    </p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/20 text-sm w-full md:w-auto">
+                    <div class="flex flex-col gap-2">
+                        <p class="flex items-center gap-2">
+                            <span class="font-bold opacity-70 uppercase text-[12px]">Estudiante:</span>
+                            <input type="text" placeholder="Nombre completo..." class="bg-transparent border-b border-white/30 focus:outline-none focus:border-white ml-2 flex-grow placeholder:text-white/30">
+                        </p>
+                        <p class="flex items-center gap-2">
+                             <span class="font-bold opacity-70 uppercase text-[12px]">Legajo:</span>
+                            <input type="text" placeholder="Nro de legajo" class="bg-transparent border-b border-white/30 focus:outline-none focus:border-white ml-2 w-32 placeholder:text-white/30">
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="p-6 md:p-10">
+            <div class="mb-6 p-4 bg-slate-50 border-l-4 border-slate-400 rounded-r-lg text-[13px] text-slate-700 leading-relaxed">
+                <p>Este dispositivo te invita a reflexionar sobre tu rol como futuro profesional en territorio. No se trata de una actividad que evaluaremos, sino de una herramienta de reflexión personal sobre tu conciencia técnica y social. Su propósito es ayudarte a reconocer tu punto de partida y, al finalizar la experiencia de extensionismo en la asignatura <strong>Ingeniería y Sociedad</strong> de la <strong>UTN-FRH</strong>, evaluar tu propia trayectoria formativa.</p>
+            </div>
+
+            <section class="mb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-6 bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                <div class="col-span-full mb-2 flex items-center gap-2 border-b border-slate-100 pb-2">
+                    <i class="fas fa-id-card text-blue-800"></i>
+                    <h2 class="text-[11px] font-bold uppercase tracking-widest text-slate-700">Perfil Sociodemográfico</h2>
+                </div>
+                
+                <div class="space-y-1">
+                    <label class="text-[11px] font-bold text-slate-500 leading-relaxed">¿Cómo preferís que nos dirijamos a vos?</label>
+                    <input type="text" class="data-input" placeholder="...">
+                </div>
+
+                <div class="space-y-1">
+                    <label class="text-[11px] font-bold text-slate-500 leading-relaxed">Especialidad y Condición</label>
+                    <div class="flex gap-2">
+                        <input type="text" class="data-input" placeholder="¿Carrera?">
+                        <input type="text" class="data-input" placeholder="¿Sos recursante?">
+                    </div>
+                </div>
+
+                <div class="space-y-1">
+                    <label class="text-[11px] font-bold text-slate-500 leading-relaxed">Título Secundario</label>
+                    <input type="text" class="data-input" placeholder="Ej: Técnico, Bachiller...">
+                </div>
+
+                <div class="space-y-1">
+                    <label class="text-[11px] font-bold text-slate-500 leading-relaxed">Convivencia y Ubicación</label>
+                    <input type="text" class="data-input" placeholder="¿Con quién vivís? ¿En qué barrio?">
+                </div>
+
+                <div class="space-y-1">
+                    <label class="text-[11px] font-bold text-slate-500 leading-relaxed">Tiempo de viaje a la facultad</label>
+                    <input type="text" class="data-input" placeholder="Minutos/Horas">
+                </div>
+
+                <div class="space-y-1">
+                    <label class="text-[11px] font-bold text-slate-500 leading-relaxed">Situación Laboral</label>
+                    <input type="text" class="data-input" placeholder="¿Trabajas? ¿modalidad?">
+                </div>
+
+                <div class="space-y-1">
+                    <label class="text-[11px] font-bold text-slate-500 leading-relaxed">Dispositivos y Conectividad</label>
+                    <input type="text" class="data-input" placeholder="¿Contás con equipo propio e internet?">
+                </div>
+
+                <div class="space-y-1">
+                    <label class="text-[11px] font-bold text-slate-500 leading-relaxed">Hábitos de Información</label>
+                    <input type="text" class="data-input" placeholder="¿Cómo te informás?">
+                </div>
+            </section>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 canvas-container">
+                <div class="canvas-card bg-blue-50 p-5 rounded-xl border border-blue-100 flex flex-col h-64 shadow-sm border-t-4 border-t-blue-500">
+                    <h2 class="font-bold text-blue-900 mb-2 flex items-center gap-2 border-b border-blue-200 pb-2"><i class="fas fa-comment-dots text-blue-600"></i> 1. Supuestos Iniciales</h2>
+                    <p class="text-[11px] text-blue-700 mb-3 italic leading-tight">¿Qué imágenes o ideas previas traigo sobre el territorio?</p>
+                    <textarea class="w-full flex-grow p-3 bg-white/50 rounded-lg text-xs focus:outline-none" placeholder="Escribe aquí..."></textarea>
+                </div>
+
+                <div class="canvas-card bg-purple-50 p-5 rounded-xl border border-purple-100 flex flex-col h-64 shadow-sm border-t-4 border-t-purple-500">
+                    <h2 class="font-bold text-purple-900 mb-2 flex items-center gap-2 border-b border-purple-200 pb-2"><i class="fas fa-tools text-purple-600"></i> 2. Saberes que Aportan</h2>
+                    <p class="text-[11px] text-purple-700 mb-3 italic leading-tight">Conocimientos técnicos o habilidades que podrían ser útiles.</p>
+                    <textarea class="w-full flex-grow p-3 bg-white/50 rounded-lg text-xs focus:outline-none" placeholder="Escribe aquí..."></textarea>
+                </div>
+
+                <div class="canvas-card bg-emerald-50 p-5 rounded-xl border border-emerald-100 flex flex-col h-64 shadow-sm border-t-4 border-t-emerald-500">
+                    <h2 class="font-bold text-emerald-900 mb-2 flex items-center gap-2 border-b border-emerald-200 pb-2"><i class="fas fa-leaf text-emerald-600"></i> 3. Contexto Socio-Ambiental</h2>
+                    <p class="text-[11px] text-emerald-700 mb-3 italic leading-tight">¿Cómo impacta el entorno físico y social en las problemáticas comunitarias?</p>
+                    <textarea class="w-full flex-grow p-3 bg-white/50 rounded-lg text-xs focus:outline-none" placeholder="Escribe aquí..."></textarea>
+                </div>
+
+                <div class="canvas-card bg-orange-50 p-5 rounded-xl border border-orange-100 flex flex-col h-64 shadow-sm border-t-4 border-t-orange-500">
+                    <h2 class="font-bold text-orange-900 mb-2 flex items-center gap-2 border-b border-orange-200 pb-2"><i class="fas fa-question-circle text-orange-600"></i> 4. Preguntas que traigo</h2>
+                    <p class="text-[11px] text-orange-700 mb-3 italic leading-tight">¿Qué necesito comprender mejor? ¿Qué me genera curiosidad o duda?</p>
+                    <textarea class="w-full flex-grow p-3 bg-white/50 rounded-lg text-xs focus:outline-none" placeholder="Escribe aquí..."></textarea>
+                </div>
+
+                <div class="canvas-card bg-rose-50 p-5 rounded-xl border border-rose-100 flex flex-col h-64 shadow-sm border-t-4 border-t-rose-500">
+                    <h2 class="font-bold text-rose-900 mb-2 flex items-center gap-2 border-b border-rose-200 pb-2"><i class="fas fa-bolt text-rose-600"></i> 5. Tensiones y Desafíos</h2>
+                    <p class="text-[11px] text-rose-700 mb-3 italic leading-tight">¿Qué me incomoda o qué obstáculos identifico?</p>
+                    <textarea class="w-full flex-grow p-3 bg-white/50 rounded-lg text-xs focus:outline-none" placeholder="Escribe aquí..."></textarea>
+                </div>
+
+                <div class="canvas-card bg-cyan-50 p-5 rounded-xl border border-cyan-100 flex flex-col h-64 shadow-sm border-t-4 border-t-cyan-500">
+                    <h2 class="font-bold text-cyan-900 mb-2 flex items-center gap-2 border-b border-cyan-200 pb-2"><i class="fas fa-chart-line text-cyan-600"></i> 6. Indicadores de Logro</h2>
+                    <p class="text-[11px] text-cyan-700 mb-3 italic leading-tight">"Voy a sentir que aprendí cuando..."</p>
+                    <textarea class="w-full flex-grow p-3 bg-white/50 rounded-lg text-xs focus:outline-none" placeholder="Escribe aquí..."></textarea>
+                </div>
+            </div>
+
+            <section class="mt-12 badge-section p-8 bg-slate-900 text-white rounded-2xl shadow-inner relative overflow-hidden">
+                <div class="relative z-10">
+                    <h2 class="text-xl font-bold mb-2 flex items-center gap-3"><i class="fas fa-user-gear text-blue-400"></i> Mi Perfil como "extensionista junior"</h2>
+                    <p class="text-slate-400 text-xs mb-8">Selecciona la insignia que mejor represente tu rol como estudiante de primer año:</p>
+
+                    <div class="grid grid-cols-2 md:grid-cols-5 gap-4" id="badgeContainer">
+                        <button onclick="selectBadge(this)" class="badge-card bg-white/5 p-4 rounded-xl flex flex-col items-center hover:bg-white/10 transition-all">
+                            <span class="text-3xl mb-2">🧭</span>
+                            <span class="text-[10px] font-bold uppercase">Explorador/a</span>
+                        </button>
+                        <button onclick="selectBadge(this)" class="badge-card bg-white/5 p-4 rounded-xl flex flex-col items-center hover:bg-white/10 transition-all">
+                            <span class="text-3xl mb-2">🔍</span>
+                            <span class="text-[10px] font-bold uppercase">Analista</span>
+                        </button>
+                        <button onclick="selectBadge(this)" class="badge-card bg-white/5 p-4 rounded-xl flex flex-col items-center hover:bg-white/10 transition-all">
+                            <span class="text-3xl mb-2">🤝</span>
+                            <span class="text-[10px] font-bold uppercase">Facilitador/a</span>
+                        </button>
+                        <button onclick="selectBadge(this)" class="badge-card bg-white/5 p-4 rounded-xl flex flex-col items-center hover:bg-white/10 transition-all">
+                            <span class="text-3xl mb-2">🔗</span>
+                            <span class="text-[10px] font-bold uppercase">Conector/a</span>
+                        </button>
+                        <button onclick="selectBadge(this)" class="badge-card bg-white/5 p-4 rounded-xl flex flex-col items-center hover:bg-white/10 transition-all">
+                            <span class="text-3xl mb-2">👁️</span>
+                            <span class="text-[10px] font-bold uppercase">Observador/a</span>
+                        </button>
+                    </div>
+
+                    <div class="mt-6">
+                        <p class="text-[10px] uppercase font-bold text-blue-400 mb-2">Justificación de mi elección:</p>
+                        <textarea class="w-full bg-white/10 border border-white/20 rounded-lg p-3 text-xs focus:outline-none focus:border-blue-400 text-white" rows="2" placeholder="Explica brevemente tu elección..."></textarea>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="bg-slate-50 p-6 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-4 no-print">
+            <div class="flex items-center gap-4">
+                <div class="text-[10px] text-slate-400 border-r pr-4 uppercase">UTN FRH<br><strong>Ingeniería y Sociedad</strong></div>
+                <div class="text-xs text-slate-500">Ciclo Lectivo 2026</div>
+            </div>
+            <button onclick="handlePrint()" class="bg-blue-800 hover:bg-blue-900 text-white px-6 py-3 rounded-xl text-sm font-bold flex items-center gap-2 transition-all shadow-lg">
+                <i class="fas fa-file-pdf"></i> Generar Entrega (PDF)
+            </button>
+        </footer>
+    </div>
+
+    <div id="saveModal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm flex items-center justify-center hidden z-50 p-4">
+        <div class="bg-white rounded-3xl p-10 max-w-sm text-center shadow-2xl border-t-8 border-blue-800">
+            <div class="w-20 h-20 bg-blue-50 text-blue-800 rounded-full flex items-center justify-center text-4xl mx-auto mb-6">
+                <i class="fas fa-print"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-slate-800 mb-2">Instrucciones</h3>
+            <p class="text-slate-600 text-sm mb-8 leading-relaxed">1. Elige <strong>"Guardar como PDF"</strong>.<br>2. Activa <strong>"Gráficos de fondo"</strong> para ver los colores e insignias.</p>
+            <button onclick="document.getElementById('saveModal').classList.add('hidden'); window.print();" class="w-full bg-blue-800 text-white py-4 rounded-2xl font-bold hover:bg-blue-900">Entendido, imprimir</button>
+        </div>
+    </div>
+
+    <script>
+        function selectBadge(element) {
+            document.querySelectorAll('.badge-card').forEach(card => card.classList.remove('selected'));
+            element.classList.add('selected');
+        }
+        function handlePrint() { document.getElementById('saveModal').classList.remove('hidden'); }
+    </script>
+</body>
+</html>
